@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		014C5E0124BCD5200054EC0E /* Core_Image_by_ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5DEE24BCD51F0054EC0E /* Core_Image_by_ExampleApp.swift */; };
-		014C5E0224BCD5200054EC0E /* Core_Image_by_ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5DEE24BCD51F0054EC0E /* Core_Image_by_ExampleApp.swift */; };
+		014C5E0124BCD5200054EC0E /* CoreImageExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5DEE24BCD51F0054EC0E /* CoreImageExampleApp.swift */; };
+		014C5E0224BCD5200054EC0E /* CoreImageExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5DEE24BCD51F0054EC0E /* CoreImageExampleApp.swift */; };
 		014C5E0324BCD5200054EC0E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5DEF24BCD51F0054EC0E /* ContentView.swift */; };
 		014C5E0424BCD5200054EC0E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5DEF24BCD51F0054EC0E /* ContentView.swift */; };
 		014C5E0524BCD5200054EC0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 014C5DF024BCD5200054EC0E /* Assets.xcassets */; };
@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		014C5DEE24BCD51F0054EC0E /* Core_Image_by_ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core_Image_by_ExampleApp.swift; sourceTree = "<group>"; };
+		014C5DEE24BCD51F0054EC0E /* CoreImageExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreImageExampleApp.swift; sourceTree = "<group>"; };
 		014C5DEF24BCD51F0054EC0E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		014C5DF024BCD5200054EC0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		014C5DF524BCD5200054EC0E /* Core Image by Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Core Image by Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,7 +57,7 @@
 		014C5DED24BCD51F0054EC0E /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				014C5DEE24BCD51F0054EC0E /* Core_Image_by_ExampleApp.swift */,
+				014C5DEE24BCD51F0054EC0E /* CoreImageExampleApp.swift */,
 				014C5DEF24BCD51F0054EC0E /* ContentView.swift */,
 				014C5DF024BCD5200054EC0E /* Assets.xcassets */,
 			);
@@ -93,9 +93,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		014C5DF424BCD5200054EC0E /* Core Image by Example (iOS) */ = {
+		014C5DF424BCD5200054EC0E /* CI Example (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 014C5E0924BCD5200054EC0E /* Build configuration list for PBXNativeTarget "Core Image by Example (iOS)" */;
+			buildConfigurationList = 014C5E0924BCD5200054EC0E /* Build configuration list for PBXNativeTarget "CI Example (iOS)" */;
 			buildPhases = (
 				014C5DF124BCD5200054EC0E /* Sources */,
 				014C5DF224BCD5200054EC0E /* Frameworks */,
@@ -105,14 +105,14 @@
 			);
 			dependencies = (
 			);
-			name = "Core Image by Example (iOS)";
+			name = "CI Example (iOS)";
 			productName = "Core Image by Example (iOS)";
 			productReference = 014C5DF524BCD5200054EC0E /* Core Image by Example.app */;
 			productType = "com.apple.product-type.application";
 		};
-		014C5DFC24BCD5200054EC0E /* Core Image by Example (macOS) */ = {
+		014C5DFC24BCD5200054EC0E /* CI Example (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 014C5E0C24BCD5200054EC0E /* Build configuration list for PBXNativeTarget "Core Image by Example (macOS)" */;
+			buildConfigurationList = 014C5E0C24BCD5200054EC0E /* Build configuration list for PBXNativeTarget "CI Example (macOS)" */;
 			buildPhases = (
 				014C5DF924BCD5200054EC0E /* Sources */,
 				014C5DFA24BCD5200054EC0E /* Frameworks */,
@@ -122,7 +122,7 @@
 			);
 			dependencies = (
 			);
-			name = "Core Image by Example (macOS)";
+			name = "CI Example (macOS)";
 			productName = "Core Image by Example (macOS)";
 			productReference = 014C5DFD24BCD5200054EC0E /* Core Image by Example.app */;
 			productType = "com.apple.product-type.application";
@@ -157,8 +157,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				014C5DF424BCD5200054EC0E /* Core Image by Example (iOS) */,
-				014C5DFC24BCD5200054EC0E /* Core Image by Example (macOS) */,
+				014C5DF424BCD5200054EC0E /* CI Example (iOS) */,
+				014C5DFC24BCD5200054EC0E /* CI Example (macOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -188,7 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				014C5E0324BCD5200054EC0E /* ContentView.swift in Sources */,
-				014C5E0124BCD5200054EC0E /* Core_Image_by_ExampleApp.swift in Sources */,
+				014C5E0124BCD5200054EC0E /* CoreImageExampleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,7 +197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				014C5E0424BCD5200054EC0E /* ContentView.swift in Sources */,
-				014C5E0224BCD5200054EC0E /* Core_Image_by_ExampleApp.swift in Sources */,
+				014C5E0224BCD5200054EC0E /* CoreImageExampleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +328,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.frankschlegel.Core-Image-by-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = de.frankschlegel.CIExample;
 				PRODUCT_NAME = "Core Image by Example";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -349,7 +349,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.frankschlegel.Core-Image-by-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = de.frankschlegel.CIExample;
 				PRODUCT_NAME = "Core Image by Example";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -373,7 +373,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.16;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.frankschlegel.Core-Image-by-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = de.frankschlegel.CIExample;
 				PRODUCT_NAME = "Core Image by Example";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -395,7 +395,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.16;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.frankschlegel.Core-Image-by-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = de.frankschlegel.CIExample;
 				PRODUCT_NAME = "Core Image by Example";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -414,7 +414,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		014C5E0924BCD5200054EC0E /* Build configuration list for PBXNativeTarget "Core Image by Example (iOS)" */ = {
+		014C5E0924BCD5200054EC0E /* Build configuration list for PBXNativeTarget "CI Example (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				014C5E0A24BCD5200054EC0E /* Debug */,
@@ -423,7 +423,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		014C5E0C24BCD5200054EC0E /* Build configuration list for PBXNativeTarget "Core Image by Example (macOS)" */ = {
+		014C5E0C24BCD5200054EC0E /* Build configuration list for PBXNativeTarget "CI Example (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				014C5E0D24BCD5200054EC0E /* Debug */,
