@@ -27,8 +27,8 @@ final class PreviewMetalView: MTKView {
         self.autoResizeDrawable = true
 
         #if os(iOS)
-            // we only need a wider gamut if the display supports it
-            self.colorPixelFormat = (self.traitCollection.displayGamut == .P3) ? .bgr10_xr_srgb : .bgra8Unorm_srgb
+        // we only need a wider gamut if the display supports it
+        self.colorPixelFormat = (self.traitCollection.displayGamut == .P3) ? .bgr10_xr_srgb : .bgra8Unorm_srgb
         #endif
         // this is important, otherwise Core Image could not render into the
         // view's framebuffer directly
@@ -38,9 +38,9 @@ final class PreviewMetalView: MTKView {
         pixelBufferPublisher.sink { [weak self] pixelBuffer in
             self?.pixelBuffer = pixelBuffer
             #if os(iOS)
-                self?.setNeedsDisplay()
+            self?.setNeedsDisplay()
             #elseif os(OSX)
-                self?.needsDisplay = true
+            self?.needsDisplay = true
             #endif
         }.store(in: &self.subscriptions)
     }
