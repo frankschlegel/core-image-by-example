@@ -8,8 +8,8 @@ final class PreviewMetalView: MTKView {
 
     private var subscriptions = Set<AnyCancellable>()
 
-    /// The pixel buffer that should be displayed next.
-    private var pixelBuffer: CVPixelBuffer?
+    /// The image that should be displayed next.
+    private var imageToDisplay: CIImage?
 
     private lazy var commandQueue = self.device?.makeCommandQueue()
     private lazy var context: CIContext = {
@@ -21,7 +21,7 @@ final class PreviewMetalView: MTKView {
     }()
 
 
-    init(device: MTLDevice?, pixelBufferPublisher: AnyPublisher<CVPixelBuffer?, Never>) {
+    init(device: MTLDevice?, imagePublisher: AnyPublisher<CIImage?, Never>) {
         super.init(frame: .zero, device: device)
 
         // setup view to only draw when we need it (i.e., a new pixel buffer arrived),
@@ -38,9 +38,9 @@ final class PreviewMetalView: MTKView {
         // view's framebuffer directly
         self.framebufferOnly = false
 
-        // try to display a pixel buffer as soon as it is published
-        pixelBufferPublisher.sink { [weak self] pixelBuffer in
-            self?.pixelBuffer = pixelBuffer
+        // try to display an image as soon as it is published
+        imagePublisher.sink { [weak self] image in
+            self?.imageToDisplay = image
             #if os(iOS)
             self?.setNeedsDisplay()
             #elseif os(OSX)
@@ -56,14 +56,9 @@ final class PreviewMetalView: MTKView {
 
 
     override func draw(_ rect: CGRect) {
-        guard let pixelBuffer = self.pixelBuffer,
+        guard let input = self.imageToDisplay,
               let currentDrawable = self.currentDrawable,
               let commandBuffer = self.commandQueue?.makeCommandBuffer() else { return }
-
-        let input = CIImage(cvImageBuffer: pixelBuffer)
-
-        // release the buffer, it's hold onto by Core Image now
-        self.pixelBuffer = nil
 
         // scale to fit into view
         let drawableSize = self.drawableSize
@@ -109,12 +104,11 @@ final class PreviewMetalView: MTKView {
 /// Helper for making PreviewMetalView available in SwiftUI.
 struct PreviewView: UIViewRepresentable {
 
-    @ObservedObject var previewPixelBufferProvider: PreviewPixelBufferProvider
+    @ObservedObject var filteredImageProvider: FilteredImageProvider
 
 
     func makeUIView(context: Context) -> PreviewMetalView {
-        let uiView = PreviewMetalView(device: MTLCreateSystemDefaultDevice(), pixelBufferPublisher: self.previewPixelBufferProvider.$previewPixelBuffer.eraseToAnyPublisher())
-        return uiView
+        return PreviewMetalView(device: MTLCreateSystemDefaultDevice(), imagePublisher:  self.filteredImageProvider.$filteredImage.eraseToAnyPublisher())
     }
 
     func updateUIView(_ uiView: PreviewMetalView, context: Context) {
@@ -128,12 +122,11 @@ struct PreviewView: UIViewRepresentable {
 /// Helper for making PreviewMetalView available in SwiftUI.
 struct PreviewView: NSViewRepresentable {
 
-    @ObservedObject var previewPixelBufferProvider: PreviewPixelBufferProvider
+    @ObservedObject var filteredImageProvider: FilteredImageProvider
 
 
     func makeNSView(context: Context) -> PreviewMetalView {
-        let uiView = PreviewMetalView(device: MTLCreateSystemDefaultDevice(), pixelBufferPublisher: self.previewPixelBufferProvider.$previewPixelBuffer.eraseToAnyPublisher())
-        return uiView
+        return PreviewMetalView(device: MTLCreateSystemDefaultDevice(), imagePublisher:  self.filteredImageProvider.$filteredImage.eraseToAnyPublisher())
     }
 
     func updateNSView(_ nsView: PreviewMetalView, context: Context) {
@@ -146,6 +139,6 @@ struct PreviewView: NSViewRepresentable {
 
 struct PreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        PreviewView(previewPixelBufferProvider: PreviewPixelBufferProvider())
+        PreviewView(filteredImageProvider: FilteredImageProvider())
     }
 }

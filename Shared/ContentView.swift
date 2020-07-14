@@ -4,10 +4,16 @@ import SwiftUI
 struct ContentView: View {
 
     private let cameraController = CameraController()
+    private let filterController: FilterController
+
+    init() {
+        // the `filterController` will transform camera frames into filtered images
+        self.filterController = FilterController(pixelBufferPublisher: self.cameraController.previewPixelBufferProvider.$previewPixelBuffer.eraseToAnyPublisher())
+    }
 
 
     var body: some View {
-        PreviewView(previewPixelBufferProvider: self.cameraController.previewPixelBufferProvider)
+        PreviewView(filteredImageProvider: self.filterController.filteredImageProvider)
             .onAppear {
                 self.cameraController.startCapturing()
             }
