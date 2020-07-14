@@ -3,10 +3,12 @@ import MetalKit
 import SwiftUI
 
 
+/// View for displaying new pixel buffers that are emitted by the given `pixelBufferPublisher`.
 final class PreviewMetalView: MTKView {
 
     private var subscriptions = Set<AnyCancellable>()
 
+    /// The pixel buffer that should be displayed next.
     private var pixelBuffer: CVPixelBuffer?
 
     private lazy var commandQueue = self.device?.makeCommandQueue()
@@ -22,12 +24,14 @@ final class PreviewMetalView: MTKView {
     init(device: MTLDevice?, pixelBufferPublisher: AnyPublisher<CVPixelBuffer?, Never>) {
         super.init(frame: .zero, device: device)
 
+        // setup view to only draw when we need it (i.e., a new pixel buffer arrived),
+        // not continuously
         self.isPaused = true
         self.enableSetNeedsDisplay = true
         self.autoResizeDrawable = true
 
         #if os(iOS)
-        // we only need a wider gamut if the display supports it
+        // we only need a wider gamut pixel format if the display supports it
         self.colorPixelFormat = (self.traitCollection.displayGamut == .P3) ? .bgr10_xr_srgb : .bgra8Unorm_srgb
         #endif
         // this is important, otherwise Core Image could not render into the
@@ -57,6 +61,9 @@ final class PreviewMetalView: MTKView {
               let commandBuffer = self.commandQueue?.makeCommandBuffer() else { return }
 
         let input = CIImage(cvImageBuffer: pixelBuffer)
+
+        // release the buffer, it's hold onto by Core Image now
+        self.pixelBuffer = nil
 
         // scale to fit into view
         let drawableSize = self.drawableSize
@@ -99,6 +106,7 @@ final class PreviewMetalView: MTKView {
 }
 
 #if os(iOS)
+/// Helper for making PreviewMetalView available in SwiftUI.
 struct PreviewView: UIViewRepresentable {
 
     @ObservedObject var previewPixelBufferProvider: PreviewPixelBufferProvider
@@ -117,6 +125,7 @@ struct PreviewView: UIViewRepresentable {
 #endif
 
 #if os(OSX)
+/// Helper for making PreviewMetalView available in SwiftUI.
 struct PreviewView: NSViewRepresentable {
 
     @ObservedObject var previewPixelBufferProvider: PreviewPixelBufferProvider

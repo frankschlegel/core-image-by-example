@@ -9,27 +9,11 @@ class PreviewPixelBufferProvider: ObservableObject {
 }
 
 
-private class PreviewPixelBufferDelegate: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
-
-    let previewPixelBufferProvider: PreviewPixelBufferProvider
-
-    init(previewPixelBufferProvider: PreviewPixelBufferProvider) {
-        self.previewPixelBufferProvider = previewPixelBufferProvider
-    }
-
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-        DispatchQueue.main.async {
-            self.previewPixelBufferProvider.previewPixelBuffer = pixelBuffer
-        }
-    }
-
-}
-
-
+/// Controller of the `AVCaptureSession` that will manage the interface to the camera
+/// and will publish new frames via the `previewPixelBufferProvider`.
 class CameraController {
 
-    var previewPixelBufferProvider = PreviewPixelBufferProvider()
+    let previewPixelBufferProvider = PreviewPixelBufferProvider()
     lazy private var previewPixelBufferDelegate = PreviewPixelBufferDelegate(previewPixelBufferProvider: self.previewPixelBufferProvider)
 
     private let captureSession = AVCaptureSession()
@@ -44,7 +28,7 @@ class CameraController {
     private let orientationObserver = OrientationObserver()
     #endif
 
-    private var cancellables = Set<AnyCancellable>()
+    private var subscriptions = Set<AnyCancellable>()
 
 
     init() {
@@ -63,7 +47,7 @@ class CameraController {
         do {
             var defaultVideoDevice: AVCaptureDevice?
 
-            // default to a wide angle camera, since the virtual devices don't support bracketing
+            // default to a wide angle back camera
             if let backCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) {
                 defaultVideoDevice = backCameraDevice
             } else if let frontCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) {
@@ -88,7 +72,7 @@ class CameraController {
             return
         }
 
-        // add the video data output
+        // add the video data output; this will vend us new frames from the camera
         if self.captureSession.canAddOutput(self.videoDataOutput) {
             self.captureSession.addOutput(self.videoDataOutput)
 
@@ -100,7 +84,7 @@ class CameraController {
                 self?.sessionQueue.async {
                     self?.videoDataOutput.connection(with: .video)?.videoOrientation = videoOrientation
                 }
-            }.store(in: &self.cancellables)
+            }.store(in: &self.subscriptions)
             #endif
         } else {
             assertionFailure("Could not add video data output to the session")
@@ -122,6 +106,27 @@ class CameraController {
     func stopCapturing() {
         self.sessionQueue.async {
             self.captureSession.stopRunning()
+        }
+    }
+
+}
+
+
+/// Helper for getting camera frames from the `AVCaptureVideoDataOutput` and passing them
+/// to the `previewPixelBufferProvider`.
+private class PreviewPixelBufferDelegate: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
+
+    let previewPixelBufferProvider: PreviewPixelBufferProvider
+
+    init(previewPixelBufferProvider: PreviewPixelBufferProvider) {
+        self.previewPixelBufferProvider = previewPixelBufferProvider
+    }
+
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+        // pass new frames in the main thread since this is the interface to SwiftUI
+        DispatchQueue.main.async {
+            self.previewPixelBufferProvider.previewPixelBuffer = pixelBuffer
         }
     }
 
