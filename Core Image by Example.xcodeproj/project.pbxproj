@@ -13,6 +13,10 @@
 		014C5E0424BCD5200054EC0E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5DEF24BCD51F0054EC0E /* ContentView.swift */; };
 		014C5E0524BCD5200054EC0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 014C5DF024BCD5200054EC0E /* Assets.xcassets */; };
 		014C5E0624BCD5200054EC0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 014C5DF024BCD5200054EC0E /* Assets.xcassets */; };
+		014C5E1024BCD9F40054EC0E /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5E0F24BCD9F30054EC0E /* PreviewView.swift */; };
+		014C5E1124BCD9F40054EC0E /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5E0F24BCD9F30054EC0E /* PreviewView.swift */; };
+		014C5E1324BCDC280054EC0E /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5E1224BCDC280054EC0E /* CameraController.swift */; };
+		014C5E1424BCDC280054EC0E /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5E1224BCDC280054EC0E /* CameraController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,8 @@
 		014C5DFD24BCD5200054EC0E /* Core Image by Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Core Image by Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		014C5DFF24BCD5200054EC0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		014C5E0024BCD5200054EC0E /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		014C5E0F24BCD9F30054EC0E /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		014C5E1224BCDC280054EC0E /* CameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +63,11 @@
 		014C5DED24BCD51F0054EC0E /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				014C5DEE24BCD51F0054EC0E /* CoreImageExampleApp.swift */,
-				014C5DEF24BCD51F0054EC0E /* ContentView.swift */,
 				014C5DF024BCD5200054EC0E /* Assets.xcassets */,
+				014C5E1224BCDC280054EC0E /* CameraController.swift */,
+				014C5DEF24BCD51F0054EC0E /* ContentView.swift */,
+				014C5DEE24BCD51F0054EC0E /* CoreImageExampleApp.swift */,
+				014C5E0F24BCD9F30054EC0E /* PreviewView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -189,6 +197,8 @@
 			files = (
 				014C5E0324BCD5200054EC0E /* ContentView.swift in Sources */,
 				014C5E0124BCD5200054EC0E /* CoreImageExampleApp.swift in Sources */,
+				014C5E1324BCDC280054EC0E /* CameraController.swift in Sources */,
+				014C5E1024BCD9F40054EC0E /* PreviewView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +208,8 @@
 			files = (
 				014C5E0424BCD5200054EC0E /* ContentView.swift in Sources */,
 				014C5E0224BCD5200054EC0E /* CoreImageExampleApp.swift in Sources */,
+				014C5E1424BCDC280054EC0E /* CameraController.swift in Sources */,
+				014C5E1124BCD9F40054EC0E /* PreviewView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
