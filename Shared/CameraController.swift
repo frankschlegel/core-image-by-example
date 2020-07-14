@@ -1,4 +1,5 @@
 import AVFoundation
+import Combine
 
 
 class PreviewPixelBufferProvider: ObservableObject {
@@ -38,6 +39,12 @@ class CameraController {
     private let videoDataOutput = AVCaptureVideoDataOutput()
 
     private lazy var videoOutputQueue = DispatchQueue(label: "Video Output Queue")
+
+    #if os(iOS)
+    private let orientationObserver = OrientationObserver()
+    #endif
+
+    private var cancellables = Set<AnyCancellable>()
 
 
     init() {
@@ -86,6 +93,15 @@ class CameraController {
             self.captureSession.addOutput(self.videoDataOutput)
 
             self.videoDataOutput.setSampleBufferDelegate(self.previewPixelBufferDelegate, queue: self.videoOutputQueue)
+
+            #if os(iOS)
+            // always tell the output the current orientation
+            self.orientationObserver.$captureVideoOrientation.sink { [weak self] videoOrientation in
+                self?.sessionQueue.async {
+                    self?.videoDataOutput.connection(with: .video)?.videoOrientation = videoOrientation
+                }
+            }.store(in: &self.cancellables)
+            #endif
         } else {
             assertionFailure("Could not add video data output to the session")
             return

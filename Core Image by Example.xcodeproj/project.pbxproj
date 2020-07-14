@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01112F5524BE32CA0042F9F4 /* OrientationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01112F5424BE32C20042F9F4 /* OrientationObserver.swift */; };
 		014C5E0124BCD5200054EC0E /* CoreImageExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5DEE24BCD51F0054EC0E /* CoreImageExampleApp.swift */; };
 		014C5E0224BCD5200054EC0E /* CoreImageExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5DEE24BCD51F0054EC0E /* CoreImageExampleApp.swift */; };
 		014C5E0324BCD5200054EC0E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5DEF24BCD51F0054EC0E /* ContentView.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01112F5424BE32C20042F9F4 /* OrientationObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationObserver.swift; sourceTree = "<group>"; };
 		014C5DEE24BCD51F0054EC0E /* CoreImageExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreImageExampleApp.swift; sourceTree = "<group>"; };
 		014C5DEF24BCD51F0054EC0E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		014C5DF024BCD5200054EC0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				014C5DF824BCD5200054EC0E /* Info.plist */,
+				01112F5424BE32C20042F9F4 /* OrientationObserver.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 			files = (
 				014C5E0324BCD5200054EC0E /* ContentView.swift in Sources */,
 				014C5E0124BCD5200054EC0E /* CoreImageExampleApp.swift in Sources */,
+				01112F5524BE32CA0042F9F4 /* OrientationObserver.swift in Sources */,
 				014C5E1324BCDC280054EC0E /* CameraController.swift in Sources */,
 				014C5E1024BCD9F40054EC0E /* PreviewView.swift in Sources */,
 			);
