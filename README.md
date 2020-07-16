@@ -24,13 +24,13 @@ Let me quote the documentation here:
 >
 >You can also create new effects with custom filters and image processors. […]
 
-In other words, if you need to do any image or video processing, like applying filters or transformations, on an Apple platform, Core Image is the framework of choice. It provides a high-level abstraction so you can easily leverage the power of the GPU and multi-core processing without needing to know details about OpenGL, Metal, or Grand Central Dispatch[^1].
+In other words, if you need to do any image or video processing, like applying filters or transformations, on an Apple platform, Core Image is the framework of choice. It provides a high-level abstraction so you can easily leverage the power of the GPU and multi-core processing without needing to know details about OpenGL, Metal, or Grand Central Dispatch<sup>[1](#footnote1)</sup>.
 
 
 
 ## Why this Repository?
 
-Core Image is a very powerful framework, but unfortunately, it receives little attention from Apple at the moment: the [Core Image Filter Reference](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/uid/TP40004346) and the [Core Image Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html#//apple_ref/doc/uid/TP30001185) received their last updates in 2016 (the latter is even in the Archives now). All example code is still written in Objective-C. The "new" way to write custom filters in Metal[^2]  is only really mentioned in WWDC sessions.
+Core Image is a very powerful framework, but unfortunately, it receives little attention from Apple at the moment: the [Core Image Filter Reference](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/uid/TP40004346) and the [Core Image Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html#//apple_ref/doc/uid/TP30001185) received their last updates in 2016 (the latter is even in the Archives now). All example code is still written in Objective-C. The "new" way to write custom filters in Metal<sup>[2](#footnote2)</sup> is only really mentioned in WWDC sessions.
 
 I think Core Image is a really cool framework, but I also see a lot of confusion when it comes to using it in practice. That's why I decided to write down the knowledge I acquired while using it in the last couple of years alongside with up-to-date demo code. I hope it will provide you with a better understanding of the framework so that you can write awesome apps for all of us! 🙂
 
@@ -44,6 +44,6 @@ Core Image by Example is available under the MIT license. See the LICENSE file f
 
 
 
-[^1]: Though you can also get quite low in the stack when you want to write your own filter or custom image processor.
-[^2]: Available since 2017.
+<a name="footnote1">1</a>: Though you can also get quite low in the stack when you want to write your own filter or custom image processor.\
+<a name="footnote2">2</a>: Available since 2017.
 
