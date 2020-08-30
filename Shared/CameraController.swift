@@ -80,11 +80,9 @@ class CameraController {
 
             #if os(iOS)
             // always tell the output the current orientation
-            self.orientationObserver.$captureVideoOrientation.sink { [weak self] videoOrientation in
-                self?.sessionQueue.async {
-                    self?.videoDataOutput.connection(with: .video)?.videoOrientation = videoOrientation
-                }
-            }.store(in: &self.subscriptions)
+            self.orientationObserver.$captureVideoOrientation.receive(on: self.sessionQueue).bind(to: self.videoDataOutput) { videoDataOutput, videoOrientation in
+                videoDataOutput.connection(with: .video)?.videoOrientation = videoOrientation
+            }
             #endif
         } else {
             assertionFailure("Could not add video data output to the session")

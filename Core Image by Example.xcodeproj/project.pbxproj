@@ -20,6 +20,8 @@
 		014C5E1124BCD9F40054EC0E /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5E0F24BCD9F30054EC0E /* PreviewView.swift */; };
 		014C5E1324BCDC280054EC0E /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5E1224BCDC280054EC0E /* CameraController.swift */; };
 		014C5E1424BCDC280054EC0E /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5E1224BCDC280054EC0E /* CameraController.swift */; };
+		0185E9A824FBE3B500095F40 /* Combine+SelfBindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0185E9A724FBE3B500095F40 /* Combine+SelfBindings.swift */; };
+		0185E9A924FBE3B500095F40 /* Combine+SelfBindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0185E9A724FBE3B500095F40 /* Combine+SelfBindings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,7 @@
 		014C5E0024BCD5200054EC0E /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		014C5E0F24BCD9F30054EC0E /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		014C5E1224BCDC280054EC0E /* CameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		0185E9A724FBE3B500095F40 /* Combine+SelfBindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Combine+SelfBindings.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +77,7 @@
 				014C5DEF24BCD51F0054EC0E /* ContentView.swift */,
 				014C5DEE24BCD51F0054EC0E /* CoreImageExampleApp.swift */,
 				014C5E0F24BCD9F30054EC0E /* PreviewView.swift */,
+				0185E9A624FBE38F00095F40 /* Helpers */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -103,6 +107,14 @@
 				014C5E0024BCD5200054EC0E /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		0185E9A624FBE38F00095F40 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0185E9A724FBE3B500095F40 /* Combine+SelfBindings.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,6 +216,7 @@
 			files = (
 				014C5E0324BCD5200054EC0E /* ContentView.swift in Sources */,
 				014C5E0124BCD5200054EC0E /* CoreImageExampleApp.swift in Sources */,
+				0185E9A824FBE3B500095F40 /* Combine+SelfBindings.swift in Sources */,
 				01112F5524BE32CA0042F9F4 /* OrientationObserver.swift in Sources */,
 				01112F5724BE3ED30042F9F4 /* FilterController.swift in Sources */,
 				014C5E1324BCDC280054EC0E /* CameraController.swift in Sources */,
@@ -220,6 +233,7 @@
 				014C5E0224BCD5200054EC0E /* CoreImageExampleApp.swift in Sources */,
 				014C5E1424BCDC280054EC0E /* CameraController.swift in Sources */,
 				014C5E1124BCD9F40054EC0E /* PreviewView.swift in Sources */,
+				0185E9A924FBE3B500095F40 /* Combine+SelfBindings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

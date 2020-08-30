@@ -6,8 +6,6 @@ import SwiftUI
 /// View for displaying new pixel buffers that are emitted by the given `pixelBufferPublisher`.
 final class PreviewMetalView: MTKView {
 
-    private var subscriptions = Set<AnyCancellable>()
-
     /// The image that should be displayed next.
     private var imageToDisplay: CIImage?
 
@@ -39,14 +37,14 @@ final class PreviewMetalView: MTKView {
         self.framebufferOnly = false
 
         // try to display an image as soon as it is published
-        imagePublisher.sink { [weak self] image in
-            self?.imageToDisplay = image
+        imagePublisher.bind(to: self) { me, image in
+            me.imageToDisplay = image
             #if os(iOS)
-            self?.setNeedsDisplay()
+            me.setNeedsDisplay()
             #elseif os(OSX)
-            self?.needsDisplay = true
+            me.needsDisplay = true
             #endif
-        }.store(in: &self.subscriptions)
+        }
     }
 
     @available(*, unavailable)

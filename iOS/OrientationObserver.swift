@@ -9,8 +9,6 @@ class OrientationObserver: ObservableObject {
 
     @Published private(set) var captureVideoOrientation: AVCaptureVideoOrientation
 
-    private var cancellables = Set<AnyCancellable>()
-
 
     init() {
         UIDevice.current.beginGeneratingDeviceOrientationNotifications()
@@ -21,14 +19,12 @@ class OrientationObserver: ObservableObject {
         NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
             .receive(on: DispatchQueue.main)
             .compactMap({ _ in getCurrentOrientation() })
-            .assign(to: \.captureVideoOrientation, on: self)
-            .store(in: &cancellables)
+            .assign(to: &self.$captureVideoOrientation)
 
         NotificationCenter.default.publisher(for: UIScene.didActivateNotification)
             .receive(on: DispatchQueue.main)
             .compactMap({ _ in getCurrentOrientation() })
-            .assign(to: \.captureVideoOrientation, on: self)
-            .store(in: &cancellables)
+            .assign(to: &self.$captureVideoOrientation)
     }
 
     deinit {
