@@ -28,7 +28,7 @@ class FilterController {
                 return filter?.outputImage
             }
             // ... and pass it to the output publisher
-            .assign(to: self.filteredImageProvider.$filteredImage)
+            .assign(to: &self.filteredImageProvider.$filteredImage)
     }
 
 }
