@@ -117,18 +117,26 @@ extension NSObject: SelfBindable {
         static var CancellablesKey = "CancellablesKey"
     }
 
+    /// Helper for wrapping the ``Set<AnyCancellable>`` into an (associated) object.
+    private final class Wrapped<T> {
+        let value: T
+        init(_ x: T) {
+            value = x
+        }
+    }
+
     public var cancellables: Set<AnyCancellable> {
         get {
-            if let cancellables = objc_getAssociatedObject(self, &NSObject.AssociatedKeys.CancellablesKey) as? Set<AnyCancellable> {
-                return cancellables
+            if let cancellables = objc_getAssociatedObject(self, &NSObject.AssociatedKeys.CancellablesKey) as? Wrapped<Set<AnyCancellable>> {
+                return cancellables.value
             } else {
                 let cancellables = Set<AnyCancellable>()
-                objc_setAssociatedObject(self, &NSObject.AssociatedKeys.CancellablesKey, cancellables, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                objc_setAssociatedObject(self, &NSObject.AssociatedKeys.CancellablesKey, Wrapped(cancellables), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
                 return cancellables
             }
         }
         set {
-            objc_setAssociatedObject(self, &NSObject.AssociatedKeys.CancellablesKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &NSObject.AssociatedKeys.CancellablesKey, Wrapped(newValue), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 }

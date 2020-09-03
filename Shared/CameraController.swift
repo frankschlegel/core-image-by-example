@@ -28,8 +28,6 @@ class CameraController {
     private let orientationObserver = OrientationObserver()
     #endif
 
-    private var subscriptions = Set<AnyCancellable>()
-
 
     init() {
         self.sessionQueue.async {
