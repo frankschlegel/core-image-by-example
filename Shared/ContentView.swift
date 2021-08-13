@@ -13,7 +13,7 @@ struct ContentView: View {
 
 
     var body: some View {
-        PreviewView(filteredImageProvider: self.filterController.filteredImageProvider)
+        PreviewView(imagePublisher: self.filterController.filteredImagePublisher)
             .onAppear {
                 self.cameraController.startCapturing()
             }

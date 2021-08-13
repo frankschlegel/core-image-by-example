@@ -102,11 +102,11 @@ final class PreviewMetalView: MTKView {
 /// Helper for making PreviewMetalView available in SwiftUI.
 struct PreviewView: UIViewRepresentable {
 
-    @ObservedObject var filteredImageProvider: FilteredImageProvider
+    let imagePublisher: AnyPublisher<CIImage?, Never>
 
 
     func makeUIView(context: Context) -> PreviewMetalView {
-        return PreviewMetalView(device: MTLCreateSystemDefaultDevice(), imagePublisher:  self.filteredImageProvider.$filteredImage.eraseToAnyPublisher())
+        return PreviewMetalView(device: MTLCreateSystemDefaultDevice(), imagePublisher:  self.imagePublisher)
     }
 
     func updateUIView(_ uiView: PreviewMetalView, context: Context) {
@@ -120,11 +120,11 @@ struct PreviewView: UIViewRepresentable {
 /// Helper for making PreviewMetalView available in SwiftUI.
 struct PreviewView: NSViewRepresentable {
 
-    @ObservedObject var filteredImageProvider: FilteredImageProvider
+    let imagePublisher: AnyPublisher<CIImage?, Never>
 
 
     func makeNSView(context: Context) -> PreviewMetalView {
-        return PreviewMetalView(device: MTLCreateSystemDefaultDevice(), imagePublisher:  self.filteredImageProvider.$filteredImage.eraseToAnyPublisher())
+        return PreviewMetalView(device: MTLCreateSystemDefaultDevice(), imagePublisher:  self.imagePublisher)
     }
 
     func updateNSView(_ nsView: PreviewMetalView, context: Context) {
@@ -137,6 +137,7 @@ struct PreviewView: NSViewRepresentable {
 
 struct PreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        PreviewView(filteredImageProvider: FilteredImageProvider())
+        let previewImage = CIFilter(name: "CICheckerboardGenerator")?.outputImage?.cropped(to: CGRect(x: 0, y: 0, width: 1000, height: 1000))
+        PreviewView(imagePublisher: Just(previewImage).eraseToAnyPublisher())
     }
 }
