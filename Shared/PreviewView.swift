@@ -35,6 +35,7 @@ final class PreviewMetalView: MTKView {
         // this is important, otherwise Core Image could not render into the
         // view's framebuffer directly
         self.framebufferOnly = false
+        self.clearColor = MTLClearColor(red: 0, green: 0, blue: 0, alpha: 0)
 
         // try to display an image as soon as it is published
         imagePublisher.bind(to: self) { me, image in
@@ -87,6 +88,7 @@ final class PreviewMetalView: MTKView {
         })
 
         do {
+            try self.context.startTask(toClear: destination)
             try self.context.startTask(toRender: centeredImage, to: destination)
         } catch {
             assertionFailure("Failed to render to preview view: \(error)")
